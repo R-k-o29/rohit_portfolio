@@ -260,7 +260,7 @@
             Hey there ! Let's connect! Drop me a message below:
           </p>
           <!-- Contact form example -->
-          <form class="mt-6">
+          <form id="contactForm" class="mt-6">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label for="name" class="block text-gray-800">Your Name</label>
@@ -313,16 +313,28 @@
           <h2 class="text-3xl font-semibold mb-8">Connect with Me</h2>
           <div class="flex justify-center space-x-8">
             <!-- Add your social icons and links here -->
-            <a href="#" class="text-white hover:text-blue-100">
+            <a
+              href="https://www.linkedin.com/in/r-k-o29/"
+              class="text-white hover:text-blue-100"
+            >
               <i class="fab fa-linkedin social-icon"></i>
             </a>
-            <a href="#" class="text-white hover:text-blue-100">
+            <a
+              href="https://api.whatsapp.com/send/?phone=9398435947&text&type=phone_number&app_absent=0"
+              class="text-white hover:text-blue-100"
+            >
               <i class="fab fa-whatsapp social-icon"></i>
             </a>
-            <a href="#" class="text-white hover:text-blue-100">
+            <a
+              href="https://github.com/R-k-o29"
+              class="text-white hover:text-blue-100"
+            >
               <i class="fab fa-github social-icon"></i>
             </a>
-            <a href="#" class="text-white hover:text-blue-100">
+            <a
+              href="mailto:rkojha2908@gmail.com"
+              class="text-white hover:text-blue-100"
+            >
               <i class="fas fa-envelope social-icon"></i>
             </a>
           </div>
@@ -348,6 +360,42 @@
           });
         });
       });
+    </script>
+
+    <script>
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault(); // Prevent default form submission
+
+          // Serialize form data
+          var formData = new FormData(this);
+
+          // Send form data to Google Apps Script URL
+          fetch(
+            "https://script.google.com/macros/s/AKfycbxS_wmVWsQLxs48382lPZXjy-0U37-zZRUbPbQyM-cCuHWe0HoWy2HMS0jGQx5t2xaq/exec",
+            {
+              method: "POST",
+              body: formData,
+            }
+          )
+            .then((response) => {
+              if (response.ok) {
+                console.log("Message sent successfully!");
+                // Optionally, clear the form fields
+                document.getElementById("contactForm").reset();
+                alert("Form submitted successfully!");
+              } else {
+                console.error(
+                  "Error occurred while sending the message:",
+                  response.statusText
+                );
+              }
+            })
+            .catch((error) => {
+              console.error("An error occurred:", error);
+            });
+        });
     </script>
   </body>
 </html>
